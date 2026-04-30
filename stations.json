@@ -1,0 +1,76 @@
+{
+  "stations": [
+    {
+      "id": "RPI-01",
+      "name": "Test Station DEV",
+      "url": "http://127.0.0.1:8000",
+      "location": "Komputer deweloperski"
+    },
+    {
+      "id": "DUMMY-02",
+      "name": "Test Station A",
+      "url": "http://192.168.1.100:8000",
+      "location": "Virtual - Test Area 1"
+    },
+    {
+      "id": "DUMMY-03",
+      "name": "Test Station B",
+      "url": "http://192.168.1.101:8000",
+      "location": "Virtual - Test Area 2"
+    },
+    {
+      "id": "DUMMY-04",
+      "name": "Test Station C",
+      "url": "http://192.168.1.102:8000",
+      "location": "Virtual - Test Area 3"
+    },
+    {
+      "id": "DUMMY-05",
+      "name": "Test Station D",
+      "url": "http://192.168.1.103:8000",
+      "location": "Virtual - Test Area 4"
+    },
+    {
+      "id": "DUMMY-06",
+      "name": "Test Station E",
+      "url": "http://192.168.1.104:8000",
+      "location": "Virtual - Test Area 5"
+    },
+    {
+      "id": "DUMMY-07",
+      "name": "Test Station F",
+      "url": "http://192.168.1.105:8000",
+      "location": "Virtual - Test Area 6"
+    },
+    {
+      "id": "DUMMY-08",
+      "name": "Test Station G",
+      "url": "http://192.168.1.106:8000",
+      "location": "Virtual - Test Area 7"
+    },
+    {
+      "id": "DUMMY-09",
+      "name": "Test Station H",
+      "url": "http://192.168.1.107:8000",
+      "location": "Virtual - Test Area 8"
+    },
+    {
+      "id": "DUMMY-10",
+      "name": "Test Station I",
+      "url": "http://192.168.1.108:8000",
+      "location": "Virtual - Test Area 9"
+    },
+    {
+      "id": "DUMMY-11",
+      "name": "Test Station J",
+      "url": "http://192.168.1.109:8000",
+      "location": "Virtual - Test Area 10"
+    },
+    {
+      "id": "DUMMY-12",
+      "name": "Test Station K",
+      "url": "http://192.168.1.110:8000",
+      "location": "Virtual - Test Area 11"
+    }
+  ]
+}

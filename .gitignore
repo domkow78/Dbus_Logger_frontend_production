@@ -1,0 +1,6 @@
+venv/
+app_logs/
+logs/
+__pycache
+*.pyc
+main_to_compare.py
