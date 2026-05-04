@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  dbus-logger-frontend:
+    build: .
+    container_name: dbus-logger-frontend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./stations.json:/app/stations.json
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: ["python", "start_frontend.py", "--no-browser"]
