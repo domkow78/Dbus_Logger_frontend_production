@@ -191,6 +191,21 @@ class APIClient:
         }
         return self._request('POST', '/uart/send', json=payload)
     
+    def get_log_head_tail(self, filename: str, head: int = 10, tail: int = 10) -> Optional[Dict[str, Any]]:
+        """
+        GET /logs/{filename}?head=N&tail=N - Pobierz pierwsze i ostatnie N linii logu.
+
+        Args:
+            filename: Nazwa pliku logu
+            head: Ile linii z początku pliku
+            tail: Ile linii z końca pliku
+
+        Returns:
+            Dict z fragmentem logu lub None przy błędzie
+        """
+        params = {"head": head, "tail": tail}
+        return self._request('GET', f'/logs/{filename}', params=params)
+
     def close(self):
         """Zamyka session (connection pooling cleanup)."""
         try:

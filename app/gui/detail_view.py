@@ -124,7 +124,7 @@ class DetailView:
             # Zatrzymaj auto-refresh podczas gdy dialog otwarty
             refresh_timer_active['value'] = False
             
-            content = self.api_client.get_log_content(filename)
+            content = self.api_client.get_log_head_tail(filename, head=8, tail=8)
             
             # Dialog tworzony na poziomie strony (nie wewnątrz logs_container)
             # aby nie został usunięty przez logs_container.clear() podczas auto-refresh
