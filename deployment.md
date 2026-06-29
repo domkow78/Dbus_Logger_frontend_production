@@ -27,11 +27,12 @@ cd Dbus_Logger_frontend_production
 ls stations.json
 
 # 3. Uruchom
-docker-compose up -d --build
+docker compose up -d --build
+# lub dla starszych wersji: docker-compose up -d --build
 
 # 4. Sprawdź status
-docker-compose ps
-docker-compose logs -f
+docker compose ps
+docker compose logs -f
 ```
 
 Aplikacja wystartuje automatycznie po restarcie Raspberry Pi.
@@ -67,8 +68,12 @@ Dostępna pod: `http://localhost:8080`
 
 ### Wymagania
 - Docker Engine 20.10+
-- Docker Compose (lub Docker Compose V2)
 - **Raspberry Pi**: sprawdź wersję `docker --version`
+
+**Uwaga o Docker Compose:**
+- Nowsze wersje (V2): używaj `docker compose` (bez myślnika) ✅
+- Starsze wersje (V1): używaj `docker-compose` (z myślnikiem)
+- Na Raspberry Pi zwykle: `docker compose`
 
 ### Pliki konfiguracyjne
 
@@ -84,6 +89,10 @@ Upewnij się, że w katalogu projektu znajdują się:
 
 #### Docker Compose (zalecane)
 ```bash
+# Nowsze wersje (Raspberry Pi)
+docker compose build
+
+# Lub starsze wersje
 docker-compose build
 ```
 
@@ -105,18 +114,20 @@ docker buildx build --platform linux/arm/v7 -t dbus-logger-frontend .
 
 #### Docker Compose (zalecane)
 ```bash
-# Uruchom w tle
-docker-compose up -d --build
+# Uruchom w tle (Raspberry Pi - nowsze wersje)
+docker compose up -d --build
 
 # Sprawdź status
-docker-compose ps
+docker compose ps
 
 # Zobacz logi
-docker-compose logs -f
+docker compose logs -f
 
 # Zatrzymaj
-docker-compose down
+docker compose down
 ```
+
+**Dla starszych wersji Docker:** zamień `docker compose` na `docker-compose`
 
 #### Ręczne uruchomienie
 ```bash
@@ -140,6 +151,9 @@ docker run -d \
 ports:
   - "80:80"
 command: ["python", "start_frontend.py", "--port", "80", "--no-browser"]
+
+# Następnie:
+docker compose up -d --build
 
 # Ręczne uruchomienie
 docker run -d -p 80:80 dbus-logger-frontend python start_frontend.py --port 80 --no-browser
@@ -336,17 +350,19 @@ python start_frontend.py --help
 ### Docker
 ```bash
 # Status kontenerów
-docker-compose ps
+docker compose ps
 
 # Logi
-docker-compose logs -f
+docker compose logs -f
 
 # Restart
-docker-compose restart
+docker compose restart
 
 # Stop
-docker-compose down
+docker compose down
 ```
+
+**Uwaga:** Jeśli `docker compose` nie działa, użyj `docker-compose` (z myślnikiem)
 
 ### Lokalne
 Sprawdź terminal gdzie uruchomiono `python start_frontend.py`
@@ -361,8 +377,8 @@ Sprawdź terminal gdzie uruchomiono `python start_frontend.py`
 git pull
 
 # Przebuduj i uruchom ponownie
-docker-compose down
-docker-compose up -d --build
+docker compose down
+docker compose up -d --build
 ```
 
 ### Lokalne
@@ -401,15 +417,33 @@ python start_frontend.py
 ### Docker nie startuje
 ```bash
 # Sprawdź logi
-docker-compose logs
+docker compose logs
+# lub: docker-compose logs (starsza wersja)
 
 # Sprawdź czy port 8080 jest wolny
 netstat -tuln | grep 8080  # Linux
 netstat -an | findstr :8080  # Windows
 
 # Rebuild z czystego stanu
-docker-compose down -v
-docker-compose up -d --build
+docker compose down -v
+docker compose up -d --build
+```
+
+### docker-compose nie działa (Raspberry Pi)
+```bash
+# Sprawdź wersję Dockera
+docker --version
+
+# Nowsze wersje używają docker compose (bez myślnika):
+docker compose version
+
+# Jeśli docker compose nie działa, zainstaluj plugin:
+sudo apt-get update
+sudo apt-get install docker-compose-plugin
+
+# Lub użyj bezpośrednio docker:
+docker build -t dbus-logger-frontend .
+docker run -d -p 8080:8080 -v $(pwd)/stations.json:/app/stations.json --restart unless-stopped --name dbus-logger-frontend dbus-logger-frontend
 ```
 
 ### Aplikacja nie odpowiada (lokalne)
