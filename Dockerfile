@@ -1,4 +1,5 @@
 # Dockerfile for Dbus Logger Frontend
+# Multi-platform support (amd64, arm64, armv7)
 FROM python:3.11-slim
 
 WORKDIR /app
